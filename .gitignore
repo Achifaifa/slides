@@ -1,0 +1,17 @@
+#Obnoxious files in general
+*.~
+*.sh~
+.directory
+
+#Backups, packages, etc
+
+*.iso
+*.rar
+*.zip
+
+#Others
+source/*.pyc
+
+#folders
+logs/*
+tests/*
