@@ -27,9 +27,9 @@ def pressed():
   """
 
   def isData():
-    return select.select([sys.stdin], [], [], 0.01)==([sys.stdin], [], [])
+    return select.select([sys.stdin], [], [], 0.1)==([sys.stdin], [], [])
 
-  c=""
+  c=0
   old_settings=termios.tcgetattr(sys.stdin)
   try:
     tty.setcbreak(sys.stdin.fileno())
@@ -41,13 +41,21 @@ def pressed():
 
 def mainloop():
 
+
   tempkey=pressed()
-  lastkey=tempkey if tempkey else lastkey
+  try: lastkey=tempkey if tempkey else lastkey
+  except: lastkey=""
 
   if loopmanage():
 
     os.system('clear')
-    print "\r lastkey - %s"%lastkey
+    print "\rlastkey - [%s]"%lastkey
+    print "\rtempkey - [%s]"%tempkey
+    print timem
+
 
 while 1:
-  os.system('clear')
+  try:
+    mainloop()
+  except KeyboardInterrupt:
+    exit()
