@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import os, select, sys, termios, time
+import os, select, sys, termios, time, tty
 
 world=[["." for i in range(10)] for i in range(22)]
 pieces=[["#","#","#","#"],
@@ -27,7 +27,7 @@ def pressed():
   """
 
   def isData():
-    return select.select([sys.stdin], [], [], 0.1)==([sys.stdin], [], [])
+    return select.select([sys.stdin], [], [], 0.2)==([sys.stdin], [], [])
 
   c=0
   old_settings=termios.tcgetattr(sys.stdin)
@@ -41,18 +41,16 @@ def pressed():
 
 def mainloop():
 
-
   tempkey=pressed()
   try: lastkey=tempkey if tempkey else lastkey
   except: lastkey=""
 
-  if loopmanage():
+  if loopmanage() or lastkey:
 
     os.system('clear')
     print "\rlastkey - [%s]"%lastkey
     print "\rtempkey - [%s]"%tempkey
     print timem
-
 
 while 1:
   try:
