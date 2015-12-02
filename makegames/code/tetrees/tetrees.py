@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import os, select, sys, termios, time, tty
+import copy, os, select, sys, termios, time, tty
 
 world=[["." for i in range(10)] for i in range(22)]
 pieces=[["#","#","#","#"],
@@ -11,6 +11,15 @@ pieces=[["#","#","#","#"],
         [["#","#"],["#","#"]]]
 keys={"d":"c","l":"z","r":"v","rot":" "}
 timem={"timepool":0,"previoustime":0}
+
+def output():
+  """
+  Prints the current status of the game
+  """
+
+  tempworld=copy.copy(world)
+  for i in tempworld:
+    print " ".join(i)
 
 def loopmanage():
   """
@@ -48,6 +57,7 @@ def mainloop():
   if loopmanage() or lastkey:
 
     os.system('clear')
+    output()
     print "\rlastkey - [%s]"%lastkey
     print "\rtempkey - [%s]"%tempkey
     print timem
