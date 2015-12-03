@@ -9,7 +9,7 @@ pieces=[["#","#","#","#"],
         [["#",".","."],["#","#","#"]],
         [[".",".","#"],["#","#","#"]],
         [["#","#"],["#","#"]]]
-keys={"d":"c","l":"z","r":"v","rot":" "}
+keys=["c", "z", "v", " "]
 timem={"timepool":0,"previoustime":0}
 
 def output():
@@ -51,8 +51,9 @@ def pressed():
 def mainloop():
 
   tempkey=pressed()
-  try: lastkey=tempkey if tempkey else lastkey
+  try: lastkey=tempkey if tempkey and tempkey in keys else lastkey
   except: lastkey=""
+
 
   if loopmanage() or lastkey:
 
