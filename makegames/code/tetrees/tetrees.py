@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import copy, os, select, sys, termios, time, tty
+import copy, os, random, select, sys, termios, time, tty
 
 world=[["." for i in range(10)] for i in range(22)]
 pieces=[["#","#","#","#"],
@@ -11,15 +11,7 @@ pieces=[["#","#","#","#"],
         [["#","#"],["#","#"]]]
 keys=["c", "z", "v", " "]
 timem={"timepool":0,"previoustime":0}
-
-def output():
-  """
-  Prints the current status of the game
-  """
-
-  tempworld=copy.copy(world)
-  for i in tempworld:
-    print " ".join(i)
+curpiece=None
 
 def loopmanage():
   """
@@ -48,6 +40,29 @@ def pressed():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
     return c
 
+def output():
+  """
+  Prints the current status of the game
+  """
+
+  os.system('clear')
+  tempworld=copy.copy(world)
+  for i in tempworld:
+    print " ".join(i)
+
+def movepiece(direction):
+
+  if curpiece is None:
+    curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
+
+  if direction==keys[0]: curpiece["coords"][0]+=1
+  if direction==keys[1]: curpiece["coords"][1]-=1
+  if direction==keys[2]: curpiece["coords"][1]+=1
+  if direction==keys[3]: rotate(curpiece)
+
+def rotate(piece):
+  pass
+
 def mainloop():
 
   tempkey=pressed()
@@ -57,11 +72,9 @@ def mainloop():
 
   if loopmanage() or lastkey:
 
-    os.system('clear')
+    movepiece(lastkey)
+    
     output()
-    print "\rlastkey - [%s]"%lastkey
-    print "\rtempkey - [%s]"%tempkey
-    print timem
 
 while 1:
   try:
