@@ -52,16 +52,24 @@ def output():
 
 def movepiece(direction):
 
-  if curpiece is None:
+  try:
+    if direction==keys[0]: curpiece["coords"][0]+=1
+    if direction==keys[1]: curpiece["coords"][1]-=1
+    if direction==keys[2]: curpiece["coords"][1]+=1
+    if direction==keys[3]: rotate()
+    if direction==0: curpiece["coords"][0]+=1
+  except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
-  if direction==keys[0]: curpiece["coords"][0]+=1
-  if direction==keys[1]: curpiece["coords"][1]-=1
-  if direction==keys[2]: curpiece["coords"][1]+=1
-  if direction==keys[3]: rotate(curpiece)
+def rotate():
 
-def rotate(piece):
-  pass
+  #[".",".","#"],["#","#","#"]
+  temp=[[] for i in range(len(curpiece["piece"][0]))]
+  for i in enumerate(curpiece["piece"]):
+    for num,j in enumerate(i):
+      temp[num].append(j)
+  return [reversed(i) for i in temp]
+
 
 def mainloop():
 
@@ -73,7 +81,6 @@ def mainloop():
   if loopmanage() or lastkey:
 
     movepiece(lastkey)
-    
     output()
 
 while 1:
