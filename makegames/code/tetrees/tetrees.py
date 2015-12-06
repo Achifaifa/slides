@@ -57,7 +57,6 @@ def movepiece(direction):
     if direction==keys[1]: curpiece["coords"][1]-=1
     if direction==keys[2]: curpiece["coords"][1]+=1
     if direction==keys[3]: rotate()
-    if direction==0: curpiece["coords"][0]+=1
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
@@ -74,17 +73,17 @@ def rotate():
 def mainloop():
 
   tempkey=pressed()
-  try: lastkey=tempkey if tempkey and tempkey in keys else lastkey
+  try: lastkey=tempkey if tempkey in keys else lastkey
   except: lastkey=""
-
 
   if loopmanage() or lastkey:
 
     movepiece(lastkey)
     output()
 
-while 1:
-  try:
-    mainloop()
-  except KeyboardInterrupt:
-    exit()
+if __name__=="__main__"
+  while 1:
+    try:
+      mainloop()
+    except KeyboardInterrupt:
+      exit()
