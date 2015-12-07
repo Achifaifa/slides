@@ -41,24 +41,25 @@ def pressed():
     return c
 
 def output():
-  """
-  Prints the current status of the game
-  """
 
   os.system('clear')
   tempworld=copy.copy(world)
-  for i in tempworld:
-    print " ".join(i)
+  for i in tempworld: print " ".join(i)
 
 def movepiece(direction):
 
   try:
-    if direction==keys[0]: curpiece["coords"][0]+=1
-    if direction==keys[1]: curpiece["coords"][1]-=1
-    if direction==keys[2]: curpiece["coords"][1]+=1
-    if direction==keys[3]: rotate()
+    if curpiece is None:
+      curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
+    
+  if direction==keys[0]: curpiece["coords"][0]+=1
+  if direction==keys[1]: curpiece["coords"][1]-=1
+  if direction==keys[2]: curpiece["coords"][1]+=1
+  if direction==keys[3]: rotate()
+  
+    
 
 def rotate():
 
@@ -80,8 +81,9 @@ def mainloop():
 
     movepiece(lastkey)
     output()
+    print "%s / %s"%(tempkey,lastkey)
 
-if __name__=="__main__"
+if __name__=="__main__":
   while 1:
     try:
       mainloop()
