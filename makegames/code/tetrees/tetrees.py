@@ -48,12 +48,14 @@ def output():
 
 def movepiece(direction):
 
+  global curpiece #Yeah I know
+
   try:
     if curpiece is None:
       curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
-    
+
   if direction==keys[0]: curpiece["coords"][0]+=1
   if direction==keys[1]: curpiece["coords"][1]-=1
   if direction==keys[2]: curpiece["coords"][1]+=1
