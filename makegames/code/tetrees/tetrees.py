@@ -78,8 +78,10 @@ def movepiece(direction):
       merge()
     else:
       curpiece["coords"][0]+=1
-  if direction==keys[1]: curpiece["coords"][1]-=1
-  if direction==keys[2]: curpiece["coords"][1]+=1
+  if direction==keys[1] and curpiece["coords"][1]-1>=0: 
+    curpiece["coords"][1]-=1
+  if direction==keys[2] and curpiece["coords"][1]+1+len(curpiece["piece"][0])<=10: 
+    curpiece["coords"][1]+=1
   if direction==keys[3]: rotate()
   
     
