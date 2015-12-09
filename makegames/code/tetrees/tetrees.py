@@ -59,7 +59,7 @@ def movepiece(direction):
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
-  if direction==keys[0]: curpiece["coords"][0]+=1
+  if direction==keys[0] or not timem["timepool"]: curpiece["coords"][0]+=1
   if direction==keys[1]: curpiece["coords"][1]-=1
   if direction==keys[2]: curpiece["coords"][1]+=1
   if direction==keys[3]: rotate()
