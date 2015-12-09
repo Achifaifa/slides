@@ -40,13 +40,27 @@ def pressed():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
     return c
 
-def output():
+def merge():
 
-  os.system('clear')
+  global world    #Shhhh...
+  global curpiece #No pain now
+
   tempworld=copy.deepcopy(world)
   for numi, i in enumerate(curpiece["piece"]):
     for numj, j in enumerate(i):
       tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j
+  world=tempworld
+  curpiece=None
+
+
+def output():
+
+  os.system('clear')
+  tempworld=copy.deepcopy(world)
+  if curpiece:
+    for numi, i in enumerate(curpiece["piece"]):
+      for numj, j in enumerate(i):
+        tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j
   for i in tempworld: print " ".join(i)
 
 def movepiece(direction):
@@ -59,7 +73,11 @@ def movepiece(direction):
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
-  if direction==keys[0] or not timem["timepool"]: curpiece["coords"][0]+=1
+  if direction==keys[0] or not timem["timepool"]: 
+    if curpiece["coords"][0]+1==21:
+      merge()
+    else:
+      curpiece["coords"][0]+=1
   if direction==keys[1]: curpiece["coords"][1]-=1
   if direction==keys[2]: curpiece["coords"][1]+=1
   if direction==keys[3]: rotate()
