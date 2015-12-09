@@ -43,7 +43,10 @@ def pressed():
 def output():
 
   os.system('clear')
-  tempworld=copy.copy(world)
+  tempworld=copy.deepcopy(world)
+  for numi, i in enumerate(curpiece["piece"]):
+    for numj, j in enumerate(i):
+      tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j
   for i in tempworld: print " ".join(i)
 
 def movepiece(direction):
