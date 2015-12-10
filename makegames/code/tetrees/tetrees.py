@@ -14,18 +14,12 @@ timem={"timepool":0,"previoustime":0}
 curpiece=None
 
 def loopmanage():
-  """
-  Internally manages the main game loop cycles 
-  """
 
   timem["timepool"]=0 if timem["timepool"]*1000>=300 else timem["timepool"]+time.time()-timem["previoustime"]
   timem["previoustime"]=time.time()
   return not timem["timepool"]
 
 def pressed():
-  """
-  Returns a pressed key (Supposedly non-blocking)
-  """
 
   def isData():
     return select.select([sys.stdin], [], [], 0.2)==([sys.stdin], [], [])
@@ -46,26 +40,36 @@ def merge():
   global curpiece #No pain now
 
   tempworld=copy.deepcopy(world)
+
   for numi, i in enumerate(curpiece["piece"]):
     for numj, j in enumerate(i):
       if j=="#":
-        tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
+        tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]="#"
   world=tempworld
   curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
   processlines()
 
-
 def output():
 
   os.system('clear')
   tempworld=copy.deepcopy(world)
+
   if curpiece:
     for numi, i in enumerate(curpiece["piece"]):
       for numj, j in enumerate(i):
         if j=="#":
           tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
+
   for i in tempworld: print " ".join(i)
+
+def collision():
+
+  piece=curpiece["piece"]
+  coords=curpiece["coords"]
+  if coords[0]+len(piece)>21: return 0
+  for numi, i in enumerate(piece[-1]):
+    if i=="#" and world[coords[0]+len(piece)][coords[1]+numi]=="#": return 1
 
 def movepiece(direction):
 
@@ -77,10 +81,10 @@ def movepiece(direction):
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
-  #TO-DO calculate contact
+  contact=collision()
 
   if direction==keys[0] or not timem["timepool"]: 
-    if curpiece["coords"][0]+len(curpiece["piece"])>=22:
+    if curpiece["coords"][0]+len(curpiece["piece"])>=22 or contact:
       merge()
     else:
       curpiece["coords"][0]+=1
@@ -94,22 +98,17 @@ def processlines():
 
   global world
 
-  print len(world)
   world=[i for i in world if not all(j=="#" for j in i)]
-  print len(world)
   world=([["."]*10]*(22-len(world)))+world
-  print len(world)
-  raw_input()
 
 def rotate():
 
-  temp=[[] for i in range(len(curpiece["piece"][0]))]
-  for numi,i in enumerate(curpiece["piece"]):
+  temp=[[] for i in curpiece["piece"][0]]
+  for i in curpiece["piece"]:
     for numj,j in enumerate(i):
       temp[numj].append(j)
   temp=[i[::-1] for i in temp]
   return temp
-
 
 def mainloop():
 
@@ -125,7 +124,4 @@ def mainloop():
 
 if __name__=="__main__":
   while 1:
-    try:
-      mainloop()
-    except KeyboardInterrupt:
-      exit()
+    mainloop()
