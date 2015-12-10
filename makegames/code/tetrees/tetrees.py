@@ -48,9 +48,12 @@ def merge():
   tempworld=copy.deepcopy(world)
   for numi, i in enumerate(curpiece["piece"]):
     for numj, j in enumerate(i):
-      tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j
+      if j=="#":
+        tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
   world=tempworld
   curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
+
+  processlines()
 
 
 def output():
@@ -60,7 +63,8 @@ def output():
   if curpiece:
     for numi, i in enumerate(curpiece["piece"]):
       for numj, j in enumerate(i):
-        tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j
+        if j=="#":
+          tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
   for i in tempworld: print " ".join(i)
 
 def movepiece(direction):
@@ -73,8 +77,10 @@ def movepiece(direction):
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
+  #TO-DO calculate contact
+
   if direction==keys[0] or not timem["timepool"]: 
-    if curpiece["coords"][0]+1==21:
+    if curpiece["coords"][0]+len(curpiece["piece"])>=22:
       merge()
     else:
       curpiece["coords"][0]+=1
@@ -84,11 +90,19 @@ def movepiece(direction):
     curpiece["coords"][1]+=1
   if direction==keys[3]: curpiece["piece"]=rotate()
   
-    
+def processlines():
+
+  global world
+
+  print len(world)
+  world=[i for i in world if not all(j=="#" for j in i)]
+  print len(world)
+  world=([["."]*10]*(22-len(world)))+world
+  print len(world)
+  raw_input()
 
 def rotate():
 
-  #[".",".","#"],["#","#","#"]
   temp=[[] for i in range(len(curpiece["piece"][0]))]
   for numi,i in enumerate(curpiece["piece"]):
     for numj,j in enumerate(i):
