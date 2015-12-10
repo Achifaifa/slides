@@ -50,7 +50,7 @@ def merge():
     for numj, j in enumerate(i):
       tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j
   world=tempworld
-  curpiece=None
+  curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
 
 def output():
@@ -82,7 +82,7 @@ def movepiece(direction):
     curpiece["coords"][1]-=1
   if direction==keys[2] and curpiece["coords"][1]+1+len(curpiece["piece"][0])<=10: 
     curpiece["coords"][1]+=1
-  if direction==keys[3]: rotate()
+  if direction==keys[3]: curpiece["piece"]=rotate()
   
     
 
@@ -90,10 +90,11 @@ def rotate():
 
   #[".",".","#"],["#","#","#"]
   temp=[[] for i in range(len(curpiece["piece"][0]))]
-  for i in enumerate(curpiece["piece"]):
-    for num,j in enumerate(i):
-      temp[num].append(j)
-  return [reversed(i) for i in temp]
+  for numi,i in enumerate(curpiece["piece"]):
+    for numj,j in enumerate(i):
+      temp[numj].append(j)
+  temp=[i[::-1] for i in temp]
+  return temp
 
 
 def mainloop():
