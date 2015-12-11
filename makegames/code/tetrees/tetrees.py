@@ -13,6 +13,7 @@ pieces=[["#","#","#","#"],
 keys=["c", "z", "v", " ", "q"]
 timem={"timepool":0,"previoustime":0}
 curpiece=None
+score={1:0, 2:0, 3:0, 4:0, "drops":0}
 
 def loopmanage():
 
@@ -64,37 +65,36 @@ def output():
 
   for i in tempworld: print " ".join(i)
 
+  print "score: %i"%(score["drops"]*2+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
+
 def collision(direction):
 
   piece=curpiece["piece"]
   coords=curpiece["coords"]
 
-  #[[".","#","."],["#","#","#"]]
-
   if direction=="down":
     for numi, i in enumerate(piece[-1]):
-      if i=="#" and world[coords[0]+len(piece)][coords[1]+numi]=="#": return 1
       try:
+        if i=="#" and world[coords[0]+len(piece)][coords[1]+numi]=="#": return 1
         if piece[-2][numi]=="#" and world[coords[0]+len(piece)-1][coords[1]+numi]=="#": return 1
         if piece[-3][numi]=="#" and world[coords[0]+len(piece)-2][coords[1]+numi]=="#": return 1
       except IndexError: pass
 
   elif direction=="left":
     for numi, i in enumerate(piece):
-      if i[0]=="#" and world[coords[0]+numi][coords[1]-1]=="#": return 1
       try:
+        if i[0]=="#" and world[coords[0]+numi][coords[1]-1]=="#": return 1
         if i[1]=="#" and world[coords[0]+numi][coords[1]]=="#": return 1
         if i[2]=="#" and world[coords[0]+numi][coords[1]+1]=="#": return 1
       except IndexError: pass
 
   elif direction=="right":
     for numi, i in enumerate(piece):
-      if i[-1]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])+1]=="#": return 1
       try:
+        if i[-1]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])+1]=="#": return 1
         if i[-2]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])]=="#": return 1
         if i[-3]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])-1]=="#": return 1
       except IndexError: pass
-
 
   return 0
 
@@ -113,6 +113,7 @@ def movepiece(direction):
       merge()
     else:
       curpiece["coords"][0]+=1
+      if direction==keys[0]: score["drops"]+=1
 
   if direction==keys[1] and curpiece["coords"][1]-1>=0 and not collision("left"): 
     curpiece["coords"][1]-=1
@@ -127,7 +128,9 @@ def processlines():
   global world
 
   world=[i for i in world if not all(j=="#" for j in i)]
-  world=([["."]*10]*(22-len(world)))+world
+  removed=22-len(world)
+  world=([["."]*10]*removed)+world
+  if removed: score[removed]+=1
 
 def rotate():
 
@@ -139,9 +142,16 @@ def rotate():
   return temp
 
 def gameover():
-
   os.system('clear')
+  print "GAME OVER"
+  print "\n1: %ix10: %i"%(score[1],score[1]*10)
+  print "2: %ix50: %i"%(score[2],score[2]*50)
+  print "3: %ix500: %i"%(score[3],score[3]*500)
+  print "tetreeses: %ix1337: %i"%(score[4],score[4]*1337)
+  print "drops: %i"%(score["drops"])
+  print "\nTotal Score: %i"%(score["drops"]+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
   exit()
+
 
 def mainloop():
 
