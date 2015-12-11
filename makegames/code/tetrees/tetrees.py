@@ -8,8 +8,9 @@ pieces=[["#","#","#","#"],
         [[".","#","#"],["#","#","."]],
         [["#",".","."],["#","#","#"]],
         [[".",".","#"],["#","#","#"]],
+        [[".","#","."],["#","#","#"]],
         [["#","#"],["#","#"]]]
-keys=["c", "z", "v", " "]
+keys=["c", "z", "v", " ", "q"]
 timem={"timepool":0,"previoustime":0}
 curpiece=None
 
@@ -63,13 +64,27 @@ def output():
 
   for i in tempworld: print " ".join(i)
 
-def collision():
+def collision(direction):
 
   piece=curpiece["piece"]
   coords=curpiece["coords"]
-  if coords[0]+len(piece)>21: return 0
-  for numi, i in enumerate(piece[-1]):
-    if i=="#" and world[coords[0]+len(piece)][coords[1]+numi]=="#": return 1
+
+  if direction=="down":
+    if coords[0]+len(piece)>21: return 0
+    for numi, i in enumerate(piece[-1]):
+      if i=="#" and world[coords[0]+len(piece)][coords[1]+numi]=="#": return 1
+      try:
+        if piece[-2][numi]=="#" and world[coords[0]+len(piece)-1][coords[1]+numi]=="#": return 1
+        elif piece[-3][numi]=="#" and world[coords[0]+len(piece)-2][coords[1]+numi]=="#": return 1
+      except IndexError: pass
+
+  elif direction=="left":
+    pass
+
+  elif direction=="right":
+    pass
+
+  return 0
 
 def movepiece(direction):
 
@@ -81,17 +96,18 @@ def movepiece(direction):
   except UnboundLocalError:
     curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
-  contact=collision()
-
   if direction==keys[0] or not timem["timepool"]: 
-    if curpiece["coords"][0]+len(curpiece["piece"])>=22 or contact:
+    if curpiece["coords"][0]+len(curpiece["piece"])>=22 or collision("down"):
       merge()
     else:
       curpiece["coords"][0]+=1
-  if direction==keys[1] and curpiece["coords"][1]-1>=0: 
+
+  if direction==keys[1] and curpiece["coords"][1]-1>=0 and not collision("left"): 
     curpiece["coords"][1]-=1
-  if direction==keys[2] and curpiece["coords"][1]+1+len(curpiece["piece"][0])<=10: 
+
+  if direction==keys[2] and curpiece["coords"][1]+1+len(curpiece["piece"][0])<=10 and not collision("right"): 
     curpiece["coords"][1]+=1
+
   if direction==keys[3]: curpiece["piece"]=rotate()
   
 def processlines():
@@ -110,17 +126,22 @@ def rotate():
   temp=[i[::-1] for i in temp]
   return temp
 
+def gameover():
+
+  os.system('clear')
+  exit()
+
 def mainloop():
 
   tempkey=pressed()
   try: lastkey=tempkey if tempkey in keys else lastkey
   except: lastkey=""
+  if lastkey=="q": gameover()
 
   if loopmanage() or lastkey:
 
     movepiece(lastkey)
     output()
-    print "%s / %s"%(tempkey,lastkey)
 
 if __name__=="__main__":
   while 1:
