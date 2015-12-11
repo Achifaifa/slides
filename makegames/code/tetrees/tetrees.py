@@ -69,20 +69,32 @@ def collision(direction):
   piece=curpiece["piece"]
   coords=curpiece["coords"]
 
+  #[[".","#","."],["#","#","#"]]
+
   if direction=="down":
-    if coords[0]+len(piece)>21: return 0
     for numi, i in enumerate(piece[-1]):
       if i=="#" and world[coords[0]+len(piece)][coords[1]+numi]=="#": return 1
       try:
         if piece[-2][numi]=="#" and world[coords[0]+len(piece)-1][coords[1]+numi]=="#": return 1
-        elif piece[-3][numi]=="#" and world[coords[0]+len(piece)-2][coords[1]+numi]=="#": return 1
+        if piece[-3][numi]=="#" and world[coords[0]+len(piece)-2][coords[1]+numi]=="#": return 1
       except IndexError: pass
 
   elif direction=="left":
-    pass
+    for numi, i in enumerate(piece):
+      if i[0]=="#" and world[coords[0]+numi][coords[1]-1]=="#": return 1
+      try:
+        if i[1]=="#" and world[coords[0]+numi][coords[1]]=="#": return 1
+        if i[2]=="#" and world[coords[0]+numi][coords[1]+1]=="#": return 1
+      except IndexError: pass
 
   elif direction=="right":
-    pass
+    for numi, i in enumerate(piece):
+      if i[-1]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])+1]=="#": return 1
+      try:
+        if i[-2]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])]=="#": return 1
+        if i[-3]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])-1]=="#": return 1
+      except IndexError: pass
+
 
   return 0
 
