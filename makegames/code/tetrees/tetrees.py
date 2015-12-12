@@ -41,13 +41,10 @@ def merge():
   global world    #Shhhh...
   global curpiece #No pain now
 
-  tempworld=copy.deepcopy(world)
-
   for numi, i in enumerate(curpiece["piece"]):
     for numj, j in enumerate(i):
       if j=="#":
-        tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]="#"
-  world=tempworld
+        world[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]="#"
   curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
   if collision("down"): gameover()
 
