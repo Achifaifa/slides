@@ -125,6 +125,7 @@ def processlines():
 def rotate():
 
   temp=[[] for i in curpiece["piece"][0]]
+  if curpiece["coords"][1]+len(curpiece["piece"])>10: return curpiece["piece"]
   for i in curpiece["piece"]:
     for numj,j in enumerate(i):
       temp[numj].append(j)
