@@ -49,6 +49,7 @@ def merge():
         tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]="#"
   world=tempworld
   curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
+  if collision("down"): gameover()
 
   processlines()
 
