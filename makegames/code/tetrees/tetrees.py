@@ -12,7 +12,7 @@ pieces=[["#","#","#","#"],
         [["#","#"],["#","#"]]]
 keys=["c", "z", "v", " ", "q"]
 timem={"timepool":0,"previoustime":0}
-curpiece=None
+curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 score={1:0, 2:0, 3:0, 4:0, "drops":0}
 
 def loopmanage():
@@ -58,11 +58,10 @@ def output():
   os.system('clear')
   tempworld=copy.deepcopy(world)
 
-  if curpiece:
-    for numi, i in enumerate(curpiece["piece"]):
-      for numj, j in enumerate(i):
-        if j=="#":
-          tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
+  for numi, i in enumerate(curpiece["piece"]):
+    for numj, j in enumerate(i):
+      if j=="#":
+        tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
 
 
   for i in tempworld: print " ".join(i)
@@ -101,14 +100,6 @@ def collision(direction):
   return 0
 
 def movepiece(direction):
-
-  global curpiece #Yeah I know
-
-  try:
-    if curpiece is None:
-      curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
-  except UnboundLocalError:
-    curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
 
   if direction==keys[0] or not timem["timepool"]: 
     if curpiece["coords"][0]+len(curpiece["piece"])>=22 or collision("down"):
