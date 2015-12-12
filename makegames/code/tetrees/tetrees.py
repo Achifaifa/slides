@@ -63,6 +63,7 @@ def output():
         if j=="#":
           tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
 
+
   for i in tempworld: print " ".join(i)
 
   print "score: %i"%(score["drops"]*2+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
@@ -91,9 +92,9 @@ def collision(direction):
   elif direction=="right":
     for numi, i in enumerate(piece):
       try:
-        if i[-1]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])+1]=="#": return 1
-        if i[-2]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])]=="#": return 1
-        if i[-3]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])-1]=="#": return 1
+        if i[-1]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])]=="#": return 1
+        if i[-2]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])-1]=="#": return 1
+        if i[-3]=="#" and world[coords[0]+numi][coords[1]+len(piece[0])-2]=="#": return 1
       except IndexError: pass
 
   return 0
@@ -129,7 +130,7 @@ def processlines():
 
   world=[i for i in world if not all(j=="#" for j in i)]
   removed=22-len(world)
-  world=([["."]*10]*removed)+world
+  world=[["." for i in range(10)] for i in range(removed)]+world
   if removed: score[removed]+=1
 
 def rotate():
@@ -142,6 +143,7 @@ def rotate():
   return temp
 
 def gameover():
+
   os.system('clear')
   print "GAME OVER"
   print "\n1: %ix10: %i"%(score[1],score[1]*10)
@@ -151,7 +153,6 @@ def gameover():
   print "drops: %i"%(score["drops"])
   print "\nTotal Score: %i"%(score["drops"]+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
   exit()
-
 
 def mainloop():
 
