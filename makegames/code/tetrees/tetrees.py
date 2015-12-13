@@ -45,9 +45,9 @@ def merge():
     for numj, j in enumerate(i):
       if j=="#":
         world[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]="#"
+
   curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
   if collision("down"): gameover()
-
   processlines()
 
 def output():
@@ -63,7 +63,8 @@ def output():
 
   for i in tempworld: print " ".join(i)
 
-  print "score: %i"%(score["drops"]*2+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
+  print "score: %i"%(score["drops"]+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
+  print "lines: %i"%(sum([k*v for k,v in score.iteritems() if isinstance(k,int)]))
 
 def collision(direction):
 
@@ -99,18 +100,13 @@ def collision(direction):
 def movepiece(direction):
 
   if direction==keys[0] or not timem["timepool"]: 
-    if curpiece["coords"][0]+len(curpiece["piece"])>=22 or collision("down"):
-      merge()
+    if curpiece["coords"][0]+len(curpiece["piece"])>=22 or collision("down"): merge()
     else:
       curpiece["coords"][0]+=1
       if direction==keys[0]: score["drops"]+=1
 
-  if direction==keys[1] and curpiece["coords"][1]-1>=0 and not collision("left"): 
-    curpiece["coords"][1]-=1
-
-  if direction==keys[2] and curpiece["coords"][1]+1+len(curpiece["piece"][0])<=10 and not collision("right"): 
-    curpiece["coords"][1]+=1
-
+  if direction==keys[1] and curpiece["coords"][1]-1>=0 and not collision("left"):                             curpiece["coords"][1]-=1
+  if direction==keys[2] and curpiece["coords"][1]+1+len(curpiece["piece"][0])<=10 and not collision("right"): curpiece["coords"][1]+=1
   if direction==keys[3]: curpiece["piece"]=rotate()
   
 def processlines():
@@ -119,7 +115,7 @@ def processlines():
 
   world=[i for i in world if not all(j=="#" for j in i)]
   removed=22-len(world)
-  world=[["." for i in range(10)] for i in range(removed)]+world
+  world=[["."]*10 for i in range(removed)]+world
   if removed: score[removed]+=1
 
 def rotate():
@@ -127,9 +123,8 @@ def rotate():
   temp=[[] for i in curpiece["piece"][0]]
   if curpiece["coords"][1]+len(curpiece["piece"])>10: return curpiece["piece"]
   for i in curpiece["piece"]:
-    for numj,j in enumerate(i):
-      temp[numj].append(j)
-  temp=[i[::-1] for i in temp]
+    for numj,j in enumerate(i): 
+      temp[numj].insert(0,j)
   return temp
 
 def gameover():
