@@ -26,12 +26,10 @@ def pressed():
   def isData():
     return select.select([sys.stdin], [], [], 0.2)==([sys.stdin], [], [])
 
-  c=0
   old_settings=termios.tcgetattr(sys.stdin)
   try:
     tty.setcbreak(sys.stdin.fileno())
-    if isData():
-      c=sys.stdin.read(1)
+    c=sys.stdin.read(1) if isData() else 0
   finally:
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
     return c
@@ -123,8 +121,7 @@ def rotate():
   temp=[[] for i in curpiece["piece"][0]]
   if curpiece["coords"][1]+len(curpiece["piece"])>10: return curpiece["piece"]
   for i in curpiece["piece"]:
-    for numj,j in enumerate(i): 
-      temp[numj].insert(0,j)
+    for numj,j in enumerate(i): temp[numj].insert(0,j)
   return temp
 
 def gameover():
