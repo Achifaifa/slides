@@ -127,13 +127,13 @@ def rotate():
 def gameover():
 
   os.system('clear')
-  print "GAME OVER"
-  print "\n1: %ix10: %i"%(score[1],score[1]*10)
+  print "GAME OVER\n"
+  print "1: %ix10: %i"%(score[1],score[1]*10)
   print "2: %ix50: %i"%(score[2],score[2]*50)
   print "3: %ix500: %i"%(score[3],score[3]*500)
-  print "tetreeses: %ix1337: %i"%(score[4],score[4]*1337)
-  print "drops: %i"%(score["drops"])
-  print "\nTotal Score: %i"%(score["drops"]+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
+  print "4: %ix1337: %i"%(score[4],score[4]*1337)
+  print "drops: %i\n"%(score["drops"])
+  print "Total Score: %i"%(score["drops"]+score[1]*10+score[2]*50+score[3]*500+score[4]*1337)
   exit()
 
 def mainloop():
