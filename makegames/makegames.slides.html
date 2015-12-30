@@ -577,7 +577,7 @@ a.anchor-link {
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -586,7 +586,7 @@ a.anchor-link {
 <h3 id="And-we-enter-the-main-loop">And we enter the main loop<a class="anchor-link" href="#And-we-enter-the-main-loop">&#182;</a></h3>
 </div>
 </div>
-</div></div><div class="fragment">
+</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1294,7 +1294,7 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">merge</span><span class="p">():</span>
@@ -1302,13 +1302,10 @@ a.anchor-link {
   <span class="k">global</span> <span class="n">world</span>    <span class="c">#Shhhh...</span>
   <span class="k">global</span> <span class="n">curpiece</span> <span class="c">#No pain now</span>
 
-  <span class="n">tempworld</span><span class="o">=</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
-
   <span class="k">for</span> <span class="n">numi</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">curpiece</span><span class="p">[</span><span class="s">&quot;piece&quot;</span><span class="p">]):</span>
     <span class="k">for</span> <span class="n">numj</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
       <span class="k">if</span> <span class="n">j</span><span class="o">==</span><span class="s">&quot;#&quot;</span><span class="p">:</span>
-        <span class="n">tempworld</span><span class="p">[</span><span class="n">numi</span><span class="o">+</span><span class="n">curpiece</span><span class="p">[</span><span class="s">&quot;coords&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="n">numj</span><span class="o">+</span><span class="n">curpiece</span><span class="p">[</span><span class="s">&quot;coords&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="s">&quot;#&quot;</span>
-  <span class="n">world</span><span class="o">=</span><span class="n">tempworld</span>
+        <span class="n">world</span><span class="p">[</span><span class="n">numi</span><span class="o">+</span><span class="n">curpiece</span><span class="p">[</span><span class="s">&quot;coords&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="n">numj</span><span class="o">+</span><span class="n">curpiece</span><span class="p">[</span><span class="s">&quot;coords&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="s">&quot;#&quot;</span>
   <span class="n">curpiece</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;piece&quot;</span><span class="p">:</span><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pieces</span><span class="p">)),</span> <span class="s">&quot;coords&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]}</span>
   <span class="k">if</span> <span class="n">collision</span><span class="p">(</span><span class="s">&quot;down&quot;</span><span class="p">):</span> <span class="n">gameover</span><span class="p">()</span>
 
