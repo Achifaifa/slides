@@ -253,7 +253,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-to-(actually)-make-games-with-python">How to (actually) make games with python<a class="anchor-link" href="#How-to-(actually)-make-games-with-python">&#182;</a></h1><h3 id="Yuri-Numerov-(Achifaifa)">Yuri Numerov (Achifaifa)<a class="anchor-link" href="#Yuri-Numerov-(Achifaifa)">&#182;</a></h3><h3 id="event-name-here">event name here<a class="anchor-link" href="#event-name-here">&#182;</a></h3><h3 id="achi.se-/-@Achifaifa-/-achi-(a)-hush.ai"><a href="http://achi.se">achi.se</a> / <a href="https://twitter.com/achifaifa">@Achifaifa</a> / <a href="http://argh.wargh">achi (a) hush.ai</a><a class="anchor-link" href="#achi.se-/-@Achifaifa-/-achi-(a)-hush.ai">&#182;</a></h3>
+<h1 id="How-to-(actually)-make-games-with-python">How to (actually) make games with python<a class="anchor-link" href="#How-to-(actually)-make-games-with-python">&#182;</a></h1><h2 id="Slides-at-code.achi.se/slides">Slides at <a href="https://github.com/achifaifa/slides">code.achi.se/slides</a><a class="anchor-link" href="#Slides-at-code.achi.se/slides">&#182;</a></h2><h3 id="Yuri-Numerov-(Achifaifa)">Yuri Numerov (Achifaifa)<a class="anchor-link" href="#Yuri-Numerov-(Achifaifa)">&#182;</a></h3><h3 id="FOSDEM'16">FOSDEM'16<a class="anchor-link" href="#FOSDEM'16">&#182;</a></h3><h4 id="2016-01-30">2016-01-30<a class="anchor-link" href="#2016-01-30">&#182;</a></h4><h3 id="achi.se-/-@Achifaifa-/-achi-(a)-hush.ai"><a href="http://achi.se">achi.se</a> / <a href="https://twitter.com/achifaifa">@Achifaifa</a> / <a href="http://argh.wargh">achi (a) hush.ai</a><a class="anchor-link" href="#achi.se-/-@Achifaifa-/-achi-(a)-hush.ai">&#182;</a></h3>
 </div>
 </div>
 </div></section></section><section><section>
@@ -827,7 +827,7 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Need to create a world, a human-readable representation of the world and a way to interact with it</li>
+<li>Need to create a world, a human-readable representation of the world and a (consistent) way to interact with it</li>
 </ul>
 
 </div>
@@ -858,7 +858,7 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>In small games, lots of code will be there just to prevent the player from breaking things</li>
+<li>In all games, lots of code will be there just to prevent the player from breaking things</li>
 </ul>
 
 </div>
@@ -889,7 +889,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-challenge">The challenge<a class="anchor-link" href="#The-challenge">&#182;</a></h3>
+<h3 id="The-challenges-(I)">The challenges (I)<a class="anchor-link" href="#The-challenges-(I)">&#182;</a></h3>
 </div>
 </div>
 </div><div class="fragment">
@@ -969,7 +969,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-other-challenge">The other challenge<a class="anchor-link" href="#The-other-challenge">&#182;</a></h3>
+<h3 id="The-challenges-(II)">The challenges (II)<a class="anchor-link" href="#The-challenges-(II)">&#182;</a></h3>
 </div>
 </div>
 </div><div class="fragment">
@@ -1091,7 +1091,7 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c">#! /usr/bin/env python</span>
@@ -1145,10 +1145,10 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;q&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="s">&quot;q&quot;</span><span class="p">]</span>
 <span class="n">timem</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;timepool&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s">&quot;previoustime&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
 <span class="n">curpiece</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;piece&quot;</span><span class="p">:</span><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pieces</span><span class="p">)),</span> <span class="s">&quot;coords&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]}</span>
 <span class="n">score</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;drops&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
@@ -1454,7 +1454,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Demo?">Demo?<a class="anchor-link" href="#Demo?">&#182;</a></h1><h1 id="&#128293;&#128293;&#128293;">&#128293;&#128293;&#128293;<a class="anchor-link" href="#&#128293;&#128293;&#128293;">&#182;</a></h1><h1 id="&#128293;&#128561;&#128293;">&#128293;&#128561;&#128293;<a class="anchor-link" href="#&#128293;&#128561;&#128293;">&#182;</a></h1><h1 id="&#128293;&#128293;&#128293;">&#128293;&#128293;&#128293;<a class="anchor-link" href="#&#128293;&#128293;&#128293;">&#182;</a></h1>
+<h1 id="Demo?">Demo?<a class="anchor-link" href="#Demo?">&#182;</a></h1><h1 id="&#128293;&#128293;&#128293;&#128561;">&#128293;&#128293;&#128293;&#128561;<a class="anchor-link" href="#&#128293;&#128293;&#128293;&#128561;">&#182;</a></h1><h1 id="&#128295;&#128293;&#128561;&#128561;">&#128295;&#128293;&#128561;&#128561;<a class="anchor-link" href="#&#128295;&#128293;&#128561;&#128561;">&#182;</a></h1><h1 id="&#128295;&#128295;&#128295;&#128561;">&#128295;&#128295;&#128295;&#128561;<a class="anchor-link" href="#&#128295;&#128295;&#128295;&#128561;">&#182;</a></h1>
 </div>
 </div>
 </div></section></section><section><section>
@@ -1559,13 +1559,118 @@ a.anchor-link {
 
 </div>
 </div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Other-games-you-can-play-with">Other games you can play with<a class="anchor-link" href="#Other-games-you-can-play-with">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Moon lander</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Space Invaders</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Mario bros</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Asteroids</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Snake</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Any board game you like</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Other console games (Nethack, Gearhead, DF)</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Rythm games</li>
+</ul>
+
+</div>
+</div>
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-to-(actually)-make-games-with-python">How to (actually) make games with python<a class="anchor-link" href="#How-to-(actually)-make-games-with-python">&#182;</a></h1><h1 id="Hope-you-learned-something!-:D-(Q/A)">Hope you learned something! :D (Q/A)<a class="anchor-link" href="#Hope-you-learned-something!-:D-(Q/A)">&#182;</a></h1><h3 id="Yuri-Numerov-(Achifaifa)">Yuri Numerov (Achifaifa)<a class="anchor-link" href="#Yuri-Numerov-(Achifaifa)">&#182;</a></h3><h3 id="event-name-here">event name here<a class="anchor-link" href="#event-name-here">&#182;</a></h3><h3 id="achi.se-/-@Achifaifa-/-achi-(a)-hush.ai"><a href="http://achi.se">achi.se</a> / <a href="https://twitter.com/achifaifa">@Achifaifa</a> / <a href="http://argh.wargh">achi (a) hush.ai</a><a class="anchor-link" href="#achi.se-/-@Achifaifa-/-achi-(a)-hush.ai">&#182;</a></h3>
+<h1 id="How-to-(actually)-make-games-with-python">How to (actually) make games with python<a class="anchor-link" href="#How-to-(actually)-make-games-with-python">&#182;</a></h1><h1 id="Hope-you-learned-something!-:D-(Q/A)">Hope you learned something! :D (Q/A)<a class="anchor-link" href="#Hope-you-learned-something!-:D-(Q/A)">&#182;</a></h1><h3 id="Yuri-Numerov-(Achifaifa)">Yuri Numerov (Achifaifa)<a class="anchor-link" href="#Yuri-Numerov-(Achifaifa)">&#182;</a></h3><h3 id="FOSDEM'16">FOSDEM'16<a class="anchor-link" href="#FOSDEM'16">&#182;</a></h3><h3 id="achi.se-/-@Achifaifa-/-achi-(a)-hush.ai"><a href="http://achi.se">achi.se</a> / <a href="https://twitter.com/achifaifa">@Achifaifa</a> / <a href="http://argh.wargh">achi (a) hush.ai</a><a class="anchor-link" href="#achi.se-/-@Achifaifa-/-achi-(a)-hush.ai">&#182;</a></h3>
 </div>
 </div>
 </div></section></section>
