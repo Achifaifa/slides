@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import geocoder, scrapy
 
 class MySpider(scrapy.Spider):
@@ -28,24 +30,38 @@ class MySpider(scrapy.Spider):
 
     addr_approx=response.xpath("//*[@id='main-info']/h1/span/text()")[0].extract().split(' en ')[-1]
     geodata=geocoder.google(addr_approx)
-    gps=geodata.latlng
+    gps=" ".join([str(i) for i in geodata.latlng])
     cp=geodata.postal
     publicdistance="?"
     
     price=response.xpath("//*[@id='details']/div[2]/ul/li[1]/text()")[0].extract()
-    contact=response.xpath("//*[@class='contact-phones']/*/p/text()").extract()
-    pics=response.xpath("//img/@src").extract()
+    contact=response.xpath("//*[@class='contact-phones']/*/p/text()")[0].extract()
+    pics="|".join(response.xpath("//img/@src").extract())
     deposit=response.xpath("//*[@id='details']/div[2]/ul/li[1]/text()")[0].extract()
     description=response.xpath("//*[@class='commentsContainer']/div/text()")[0].extract()
 
-    return {'sku':sku, 'name':name, 'price':price, 'type':cubetype}
+    return {'size':size,
+            'orientation': orientation,
+            'rooms': rooms,
+            'floor': floor,
+            'int_ext': int_ext,
+            'lift': lift,
+            'addr_approx': addr_approx,
+            'gps': gps,
+            'cp': cp,
+            'publicdistance': publicdistance,
+            'price': price,
+            'contact': contact,
+            'pics': pics,
+            'deposit': deposit,
+            'description': description}
 
   def parse(self,response):
 
-    flats=[i for i in a if "/inmueble/" in response.xpath("//a/@href").extract()]
+    flats=[i for i in response.xpath("//a/@href").extract() if "/inmueble/" in i]
 
     for flat in flats:
-      flaturl=response.urljoin(cube)
+      flaturl=response.urljoin(flat)
       yield scrapy.Request(flaturl,callback=self.parseflat)
     
     nexturl=response.xpath('//*[@class="next"]/a/@href').extract()
