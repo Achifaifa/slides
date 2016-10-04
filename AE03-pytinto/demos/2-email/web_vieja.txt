@@ -1,0 +1,4 @@
+<center><h1>TABLON DE ANUNCIOS</h1></center>
+<ul>
+<li> 2015-10-01: Disponible el prototipo de la nueva batmanmanta
+<li> 2016-02-10: Nuevo aviso de seguridad
