@@ -10,12 +10,12 @@ with open ("web_vieja.txt") as archivo:
 if web!=web_vieja: 
     webs=set(web.split('\n'))
     web_viejas=set(web_vieja.split('\n'))
-    diferencia=web_viejas.difference(webs)
+    diferencia=webs.difference(web_viejas)
     
-    txt="Hay avisos nuevos en %s! \nEstos son los nuevos avisos: \n"+"\n".join(diferencia)
+    txt="Hay avisos nuevos en %s!\nEstos son los nuevos avisos:\n\n"%url+"\n".join(diferencia).replace("<li> ","")
     mensaje=MIMEText(txt)
     mensaje['subject']="Avisos nuevos en %s"%url
-    mensaje['from']="script de prueba"
+    mensaje['from']="Aviso automatico"
     mensaje['to']="ae03demo@mail.com"
 
     s=smtplib.SMTP("smtp.mail.com", 587)
@@ -26,5 +26,6 @@ if web!=web_vieja:
       s.sendmail("ae03demo@mail.com", "ae03demo@mail.com", mensaje.as_string())
       with open("web_vieja.txt","w+") as archivo:
         archivo.write(web)
+    except: pass
     finally:
-      s.close()
+        s.close()
