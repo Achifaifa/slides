@@ -3,3 +3,4 @@
 <li> 2015-10-01: Disponible el prototipo de la nueva batmanmanta
 <li> 2016-02-10: Nuevo aviso de seguridad
 <li> 2016-05-01: Probado script nuevo. Funciona genial.
+<li> 2016-10-07: En la charla. Fijo que funciona.
