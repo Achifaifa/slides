@@ -1,0 +1,52 @@
+<canvas id="simple" width="600" height="600"></canvas>
+
+<script>
+  c=document.getElementById("simple");
+  ctx=c.getContext("2d");
+  ctx.canvas.width=600;
+  ctx.canvas.height=600;
+  c.style.background="#000";
+  ctx.fillStyle="white";
+  ctx.strokeStyle="white";
+  
+  snowdropn=500;
+  step=1;
+  starttime=Date.now();
+
+  function updateclock(){
+
+    deltat=Date.now()-starttime
+    step=Math.floor(deltat/33)
+  }
+
+  function main(){
+
+    ctx.clearRect(0,0,600,600);
+
+    // Create pool of snow drops
+    if (step==1){
+      snowlist={"size":0}
+      for (i=0; i<snowdropn; i++){
+        snowlist[i]={"x":Math.random()*1200,"plane":1+Math.floor(Math.random()*7)};
+        snowlist[i].snowstep=Math.random()*600/snowlist[i].plane      
+        snowlist.size++
+      }
+    }
+
+    // Draw drops based on position(x), step and plane
+    for (i=0; i<snowdropn; i++){
+      ctx.fillRect(
+        snowlist[i].x-snowlist[i].plane*snowlist[i].snowstep+25*Math.sin(snowlist[i].snowstep*3.14/32),
+        snowlist[i].snowstep*snowlist[i].plane,
+        1+(snowlist[i].plane/2),1+(snowlist[i].plane/2) // Snow drop size
+      );
+
+      if (snowlist[i].snowstep*snowlist[i].plane>600){snowlist[i].snowstep=0}
+      else {snowlist[i].snowstep++}
+    }
+
+    updateclock();
+  }
+
+  setInterval(main, 40);
+</script>

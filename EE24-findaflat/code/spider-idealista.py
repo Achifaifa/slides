@@ -5,7 +5,8 @@ import geocoder, scrapy
 class MySpider(scrapy.Spider):
   name='idealista'
   allowed_domains=["idealista.com"]
-  start_urls=['https://www.idealista.com/alquiler-viviendas/bilbao-vizcaya/']
+  #start_urls=['https://www.idealista.com/alquiler-viviendas/bilbao-vizcaya/']
+  start_urls=['https://www.idealista.com/alquiler-viviendas/madrid/chamberi/']
 
   def parseflat(self,response):
 

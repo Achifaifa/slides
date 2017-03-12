@@ -3,13 +3,7 @@
 import copy, os, random, select, sys, termios, time, tty
 
 world=[["." for i in range(10)] for i in range(22)]
-pieces=[["#","#","#","#"],
-        [["#","#","."],[".","#","#"]],
-        [[".","#","#"],["#","#","."]],
-        [["#",".","."],["#","#","#"]],
-        [[".","#","."],["#","#","#"]],
-        [[".",".","#"],["#","#","#"]],
-        [["#","#"],["#","#"]]]
+pieces=[["#","#","#","#"],[["#","#","."],[".","#","#"]],[[".","#","#"],["#","#","."]],[["#",".","."],["#","#","#"]],[[".","#","."],["#","#","#"]],[[".",".","#"],["#","#","#"]],[["#","#"],["#","#"]]]
 keys=["c", "z", "v", "x", "q"]
 timem={"timepool":0,"previoustime":0}
 curpiece={"piece":copy.copy(random.choice(pieces)), "coords":[0,3]}
@@ -57,7 +51,6 @@ def output():
     for numj, j in enumerate(i):
       if j=="#":
         tempworld[numi+curpiece["coords"][0]][numj+curpiece["coords"][1]]=j 
-
 
   for i in tempworld: print " ".join(i)
 
