@@ -1,0 +1,67 @@
+<canvas id="game" width="600" height="600"></canvas>
+
+<script>
+  c=document.getElementById("game");
+  ctx=c.getContext("2d");
+  ctx.canvas.width=600;
+  ctx.canvas.height=600;
+  c.style.background="#000";
+  ctx.fillStyle="white";
+  ctx.strokeStyle="white";
+
+  points=0
+  starttime=Date.now();
+  gameover=0
+
+  function updateclock(){
+
+    deltat=Date.now()-starttime
+    points=Math.floor(deltat/33)
+  }
+
+// --- BEGIN STACKOVERFLOW COPYPASTE ---
+  function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+  }
+  c.addEventListener('mousemove', function(evt) {
+    mousepos = getMousePos(c, evt);
+  }, false);
+// --- END STACKOVERFLOW COPYPASTE ---
+
+  function moveobj(obj){
+
+    obj.x=300+300*Math.sin(points/(75+22*Math.sin(points/51)))
+    obj.y=300+300*Math.cos(points/(66+13*Math.sin(points/75)))
+  }
+
+  margin=7
+  function check(obj){
+
+    if (obj.x-margin<mousepos.x && mousepos.x<obj.x+margin && obj.y-margin<mousepos.y && mousepos.y<obj.y+margin){
+      gameover=1
+    }
+  }
+
+  obj={x:0,y:0}
+  function main(){
+
+    if (gameover==0){
+      ctx.clearRect(0,0,600,600);
+      ctx.fillRect(mousepos.x-5, mousepos.y-5, 10,10)
+      moveobj(obj);
+      ctx.fillRect(obj.x, obj.y, 10,10);
+      ctx.fillText(points,5,15)
+      updateclock();
+      check(obj);
+    }
+    else{
+      ctx.fillText("GAME OVER", 300,300)
+    }
+  }
+
+  setInterval(main, 20);
+</script>
