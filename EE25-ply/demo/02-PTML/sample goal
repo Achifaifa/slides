@@ -4,6 +4,9 @@ LIST
 # Search members
 SHOW <field> IS <value>
 
+# Get data of members
+SHOW <field> OF <nickname>
+
 # Add members
 JOIN <nickname>
 > <field> <value>
@@ -13,9 +16,6 @@ DONE
 ALTER <nickname>
 > <field> <value>
 DONE
-
-# Get data of members
-SHOW <field> OF <nickname>
 
 # Remove members
 LEAVE <nickname>
@@ -50,7 +50,6 @@ LIST
 | member5
 | --end
 JOIN <nickname>
-> NAME <name>
 > EMAIL <email>
 > CITY <city>
 > TRANSPORT <transport>

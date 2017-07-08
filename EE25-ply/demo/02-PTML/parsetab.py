@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'EF086BFABE1E04E4AFFFB55D8E7FA092'
+_lr_signature = '3D1E2C6FF90135DEC6BBDC8E33432C61'
     
-_lr_action_items = {'MAP':([0,],[10,]),'WORD':([5,7,8,11,12,15,21,22,],[15,16,17,18,19,20,23,24,]),'SHOW':([0,],[11,]),'OF':([18,],[21,]),'IS':([18,],[22,]),'SIT':([0,],[5,]),'LIST':([0,],[4,]),'LEAVE':([0,],[7,]),'FIELD':([0,],[8,]),'DONE':([0,],[9,]),'DATA':([0,],[12,]),'$end':([1,2,3,4,6,9,10,13,14,16,17,19,20,23,24,],[-1,0,-3,-6,-2,-13,-7,-4,-5,-8,-14,-12,-9,-11,-10,]),}
+_lr_action_items = {'MAP':([0,],[12,]),'WORD':([6,9,10,13,14,16,22,23,],[16,17,18,19,20,21,24,25,]),'SHOW':([0,],[13,]),'OF':([19,],[22,]),'IS':([19,],[23,]),'SIT':([0,],[6,]),'LIST':([0,],[1,]),'LEAVE':([0,],[9,]),'FIELD':([0,],[10,]),'DONE':([0,],[11,]),'DATA':([0,],[14,]),'$end':([1,2,3,4,5,7,8,11,12,15,17,18,20,21,24,25,],[-7,-1,0,-5,-6,-2,-3,-14,-8,-4,-9,-15,-13,-10,-12,-11,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'map':([0,],[1,]),'stat':([0,],[2,]),'wargs':([0,],[3,]),'list':([0,],[6,]),'data':([0,],[13,]),'spec':([0,],[14,]),}
+_lr_goto_items = {'map':([0,],[2,]),'stat':([0,],[3,]),'sit':([0,],[4,]),'wargs':([0,],[8,]),'list':([0,],[7,]),'search':([0,],[5,]),'data':([0,],[15,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,18 +26,19 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> stat","S'",1,None,None,None),
-  ('stat -> map','stat',1,'p_state','ptml.py',58),
-  ('stat -> list','stat',1,'p_state','ptml.py',59),
-  ('stat -> wargs','stat',1,'p_state','ptml.py',60),
-  ('stat -> data','stat',1,'p_state','ptml.py',61),
-  ('stat -> spec','stat',1,'p_state','ptml.py',62),
-  ('list -> LIST','list',1,'p_list','ptml.py',67),
-  ('map -> MAP','map',1,'p_map','ptml.py',72),
-  ('wargs -> LEAVE WORD','wargs',2,'p_wargs','ptml.py',77),
-  ('spec -> SIT WORD WORD','spec',3,'p_spec','ptml.py',82),
-  ('spec -> SHOW WORD IS WORD','spec',4,'p_spec','ptml.py',83),
-  ('spec -> SHOW WORD OF WORD','spec',4,'p_spec','ptml.py',84),
-  ('data -> DATA WORD','data',2,'p_data','ptml.py',89),
-  ('data -> DONE','data',1,'p_data','ptml.py',90),
-  ('data -> FIELD WORD','data',2,'p_data','ptml.py',91),
+  ('stat -> map','stat',1,'p_state','ptml.py',77),
+  ('stat -> list','stat',1,'p_state','ptml.py',78),
+  ('stat -> wargs','stat',1,'p_state','ptml.py',79),
+  ('stat -> data','stat',1,'p_state','ptml.py',80),
+  ('stat -> sit','stat',1,'p_state','ptml.py',81),
+  ('stat -> search','stat',1,'p_state','ptml.py',82),
+  ('list -> LIST','list',1,'p_list','ptml.py',87),
+  ('map -> MAP','map',1,'p_map','ptml.py',94),
+  ('wargs -> LEAVE WORD','wargs',2,'p_wargs','ptml.py',99),
+  ('sit -> SIT WORD WORD','sit',3,'p_sit','ptml.py',107),
+  ('search -> SHOW WORD IS WORD','search',4,'p_search','ptml.py',111),
+  ('search -> SHOW WORD OF WORD','search',4,'p_search','ptml.py',112),
+  ('data -> DATA WORD','data',2,'p_data','ptml.py',118),
+  ('data -> DONE','data',1,'p_data','ptml.py',119),
+  ('data -> FIELD WORD','data',2,'p_data','ptml.py',120),
 ]

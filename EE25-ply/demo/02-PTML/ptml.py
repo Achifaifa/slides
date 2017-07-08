@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 
-import copy, json, time
+import copy, json, re, string, time
 from ply import lex, yacc
+
+# General data
+
+groupname="PKT Team"
+majorlimit="B"
+minorlimit="T"
+numlimit=128
 
 # Token list
 
@@ -78,7 +85,8 @@ def p_state(p):
           | list
           | wargs 
           | data
-          | spec'''
+          | sit
+          | search'''
 
   pass
 
@@ -92,7 +100,24 @@ def p_list(p):
 def p_map(p):
   '''map : MAP'''
 
-  print "GENERATING MAP"
+  print "|--exporting map"
+  places={i['location']:i['name'] for i in datadict}
+  output="<center><h1>Seating plan for %s</h1><br/><br/><table>"%groupname
+  letterrange=[i+j for i in string.uppercase[:string.uppercase.find(majorlimit)+1] \
+                   for j in string.uppercase[:string.uppercase.find(minorlimit)+1]]
+  numrange=range(1,numlimit+1)
+  output+="<tr>%s</tr>"%("".join(["<th>%i</th>"%i for i in numrange]))
+
+  for i in letterrange:
+    output+="<tr>"
+    for j in numrange:
+      output+="<th>%s</th>"%places.get(i+str(j),"-")
+    output+="</tr>"
+
+  with open("./seatingplan", "w+") as out:
+    out.write(output)
+
+  print "|--done"
 
 def p_wargs(p):
   '''wargs : LEAVE WORD'''
@@ -102,12 +127,32 @@ def p_wargs(p):
   datadict=[i for i in datadict if i['name']!=p[2]]
   print "| --end"
 
-def p_spec(p):
-  '''spec : SIT WORD WORD
-          | SHOW WORD IS WORD
-          | SHOW WORD OF WORD'''
+def p_sit(p):
+  '''sit : SIT WORD WORD'''
 
-  print p
+  print "|--assigning seat to %s"%p[2]
+  placere=re.compile('[A-Z]{1,2}[0-9]{2}')
+  match=placere.match(p[3])
+  if match:
+    place=match.string 
+    name=[i for i in datadict if i['name']==p[2]][0]['location']=place
+    print "| %s assigned"%place 
+    print "|--done"
+  else: 
+    print "|--error (Not a valid seat)"
+
+
+def p_search(p):
+  '''search : SHOW WORD IS WORD
+            | SHOW WORD OF WORD'''
+
+  if p[3]=="IS": 
+    print "|--members with %s=%s\n|"%(p[2], p[4]),
+    print "\n| ".join([i["name"] for i in datadict if i[p[2]]==p[4]])
+  if p[3]=="OF": 
+    print "|--showing %s of %s\n|"%(p[2], p[4]),
+    print [i for i in datadict if i['name']==p[4]][0][p[2]]
+  print "|--end"
 
 def p_data(p):
   '''data : DATA WORD

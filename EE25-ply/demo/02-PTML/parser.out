@@ -7,30 +7,31 @@ Rule 1     stat -> map
 Rule 2     stat -> list
 Rule 3     stat -> wargs
 Rule 4     stat -> data
-Rule 5     stat -> spec
-Rule 6     list -> LIST
-Rule 7     map -> MAP
-Rule 8     wargs -> LEAVE WORD
-Rule 9     spec -> SIT WORD WORD
-Rule 10    spec -> SHOW WORD IS WORD
-Rule 11    spec -> SHOW WORD OF WORD
-Rule 12    data -> DATA WORD
-Rule 13    data -> DONE
-Rule 14    data -> FIELD WORD
+Rule 5     stat -> sit
+Rule 6     stat -> search
+Rule 7     list -> LIST
+Rule 8     map -> MAP
+Rule 9     wargs -> LEAVE WORD
+Rule 10    sit -> SIT WORD WORD
+Rule 11    search -> SHOW WORD IS WORD
+Rule 12    search -> SHOW WORD OF WORD
+Rule 13    data -> DATA WORD
+Rule 14    data -> DONE
+Rule 15    data -> FIELD WORD
 
 Terminals, with rules where they appear
 
-DATA                 : 12
-DONE                 : 13
-FIELD                : 14
-IS                   : 10
-LEAVE                : 8
-LIST                 : 6
-MAP                  : 7
-OF                   : 11
-SHOW                 : 10 11
-SIT                  : 9
-WORD                 : 8 9 9 10 10 11 11 12 14
+DATA                 : 13
+DONE                 : 14
+FIELD                : 15
+IS                   : 11
+LEAVE                : 9
+LIST                 : 7
+MAP                  : 8
+OF                   : 12
+SHOW                 : 11 12
+SIT                  : 10
+WORD                 : 9 10 10 11 11 12 12 13 15
 error                : 
 
 Nonterminals, with rules where they appear
@@ -38,7 +39,8 @@ Nonterminals, with rules where they appear
 data                 : 4
 list                 : 2
 map                  : 1
-spec                 : 5
+search               : 6
+sit                  : 5
 stat                 : 0
 wargs                : 3
 
@@ -51,199 +53,208 @@ state 0
     (2) stat -> . list
     (3) stat -> . wargs
     (4) stat -> . data
-    (5) stat -> . spec
-    (7) map -> . MAP
-    (6) list -> . LIST
-    (8) wargs -> . LEAVE WORD
-    (12) data -> . DATA WORD
-    (13) data -> . DONE
-    (14) data -> . FIELD WORD
-    (9) spec -> . SIT WORD WORD
-    (10) spec -> . SHOW WORD IS WORD
-    (11) spec -> . SHOW WORD OF WORD
+    (5) stat -> . sit
+    (6) stat -> . search
+    (8) map -> . MAP
+    (7) list -> . LIST
+    (9) wargs -> . LEAVE WORD
+    (13) data -> . DATA WORD
+    (14) data -> . DONE
+    (15) data -> . FIELD WORD
+    (10) sit -> . SIT WORD WORD
+    (11) search -> . SHOW WORD IS WORD
+    (12) search -> . SHOW WORD OF WORD
 
-    MAP             shift and go to state 10
-    LIST            shift and go to state 4
-    LEAVE           shift and go to state 7
-    DATA            shift and go to state 12
-    DONE            shift and go to state 9
-    FIELD           shift and go to state 8
-    SIT             shift and go to state 5
-    SHOW            shift and go to state 11
+    MAP             shift and go to state 12
+    LIST            shift and go to state 1
+    LEAVE           shift and go to state 9
+    DATA            shift and go to state 14
+    DONE            shift and go to state 11
+    FIELD           shift and go to state 10
+    SIT             shift and go to state 6
+    SHOW            shift and go to state 13
 
-    map                            shift and go to state 1
-    stat                           shift and go to state 2
-    wargs                          shift and go to state 3
-    list                           shift and go to state 6
-    data                           shift and go to state 13
-    spec                           shift and go to state 14
+    map                            shift and go to state 2
+    stat                           shift and go to state 3
+    sit                            shift and go to state 4
+    search                         shift and go to state 5
+    list                           shift and go to state 7
+    wargs                          shift and go to state 8
+    data                           shift and go to state 15
 
 state 1
+
+    (7) list -> LIST .
+
+    $end            reduce using rule 7 (list -> LIST .)
+
+
+state 2
 
     (1) stat -> map .
 
     $end            reduce using rule 1 (stat -> map .)
 
 
-state 2
+state 3
 
     (0) S' -> stat .
 
 
 
-state 3
-
-    (3) stat -> wargs .
-
-    $end            reduce using rule 3 (stat -> wargs .)
-
-
 state 4
 
-    (6) list -> LIST .
+    (5) stat -> sit .
 
-    $end            reduce using rule 6 (list -> LIST .)
+    $end            reduce using rule 5 (stat -> sit .)
 
 
 state 5
 
-    (9) spec -> SIT . WORD WORD
+    (6) stat -> search .
 
-    WORD            shift and go to state 15
+    $end            reduce using rule 6 (stat -> search .)
 
 
 state 6
+
+    (10) sit -> SIT . WORD WORD
+
+    WORD            shift and go to state 16
+
+
+state 7
 
     (2) stat -> list .
 
     $end            reduce using rule 2 (stat -> list .)
 
 
-state 7
-
-    (8) wargs -> LEAVE . WORD
-
-    WORD            shift and go to state 16
-
-
 state 8
 
-    (14) data -> FIELD . WORD
+    (3) stat -> wargs .
 
-    WORD            shift and go to state 17
+    $end            reduce using rule 3 (stat -> wargs .)
 
 
 state 9
 
-    (13) data -> DONE .
+    (9) wargs -> LEAVE . WORD
 
-    $end            reduce using rule 13 (data -> DONE .)
+    WORD            shift and go to state 17
 
 
 state 10
 
-    (7) map -> MAP .
-
-    $end            reduce using rule 7 (map -> MAP .)
-
-
-state 11
-
-    (10) spec -> SHOW . WORD IS WORD
-    (11) spec -> SHOW . WORD OF WORD
+    (15) data -> FIELD . WORD
 
     WORD            shift and go to state 18
 
 
+state 11
+
+    (14) data -> DONE .
+
+    $end            reduce using rule 14 (data -> DONE .)
+
+
 state 12
 
-    (12) data -> DATA . WORD
+    (8) map -> MAP .
+
+    $end            reduce using rule 8 (map -> MAP .)
+
+
+state 13
+
+    (11) search -> SHOW . WORD IS WORD
+    (12) search -> SHOW . WORD OF WORD
 
     WORD            shift and go to state 19
 
 
-state 13
+state 14
+
+    (13) data -> DATA . WORD
+
+    WORD            shift and go to state 20
+
+
+state 15
 
     (4) stat -> data .
 
     $end            reduce using rule 4 (stat -> data .)
 
 
-state 14
-
-    (5) stat -> spec .
-
-    $end            reduce using rule 5 (stat -> spec .)
-
-
-state 15
-
-    (9) spec -> SIT WORD . WORD
-
-    WORD            shift and go to state 20
-
-
 state 16
 
-    (8) wargs -> LEAVE WORD .
+    (10) sit -> SIT WORD . WORD
 
-    $end            reduce using rule 8 (wargs -> LEAVE WORD .)
+    WORD            shift and go to state 21
 
 
 state 17
 
-    (14) data -> FIELD WORD .
+    (9) wargs -> LEAVE WORD .
 
-    $end            reduce using rule 14 (data -> FIELD WORD .)
+    $end            reduce using rule 9 (wargs -> LEAVE WORD .)
 
 
 state 18
 
-    (10) spec -> SHOW WORD . IS WORD
-    (11) spec -> SHOW WORD . OF WORD
+    (15) data -> FIELD WORD .
 
-    IS              shift and go to state 22
-    OF              shift and go to state 21
+    $end            reduce using rule 15 (data -> FIELD WORD .)
 
 
 state 19
 
-    (12) data -> DATA WORD .
+    (11) search -> SHOW WORD . IS WORD
+    (12) search -> SHOW WORD . OF WORD
 
-    $end            reduce using rule 12 (data -> DATA WORD .)
+    IS              shift and go to state 23
+    OF              shift and go to state 22
 
 
 state 20
 
-    (9) spec -> SIT WORD WORD .
+    (13) data -> DATA WORD .
 
-    $end            reduce using rule 9 (spec -> SIT WORD WORD .)
+    $end            reduce using rule 13 (data -> DATA WORD .)
 
 
 state 21
 
-    (11) spec -> SHOW WORD OF . WORD
+    (10) sit -> SIT WORD WORD .
 
-    WORD            shift and go to state 23
+    $end            reduce using rule 10 (sit -> SIT WORD WORD .)
 
 
 state 22
 
-    (10) spec -> SHOW WORD IS . WORD
+    (12) search -> SHOW WORD OF . WORD
 
     WORD            shift and go to state 24
 
 
 state 23
 
-    (11) spec -> SHOW WORD OF WORD .
+    (11) search -> SHOW WORD IS . WORD
 
-    $end            reduce using rule 11 (spec -> SHOW WORD OF WORD .)
+    WORD            shift and go to state 25
 
 
 state 24
 
-    (10) spec -> SHOW WORD IS WORD .
+    (12) search -> SHOW WORD OF WORD .
 
-    $end            reduce using rule 10 (spec -> SHOW WORD IS WORD .)
+    $end            reduce using rule 12 (search -> SHOW WORD OF WORD .)
+
+
+state 25
+
+    (11) search -> SHOW WORD IS WORD .
+
+    $end            reduce using rule 11 (search -> SHOW WORD IS WORD .)
 
