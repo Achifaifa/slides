@@ -1,0 +1,23 @@
+Intro to programming languages
+  * definition
+  * examples
+Domain-specific languages
+  * definition
+  * examples
+Intro to compilers/parsers/lexers
+  * definitions
+  * processes
+  * types
+  * more info
+Lex/yacc and PLY
+  * history
+  * characteristics
+  * more info
+Introduction to goal
+  * context
+  * description
+  * why a dsl
+  * overall view of process
+DSLs applied to goal
+development of demo
+demo

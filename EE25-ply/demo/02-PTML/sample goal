@@ -1,0 +1,69 @@
+# Show all members
+LIST
+
+# Search members
+SHOW <field> IS <value>
+
+# Add members
+JOIN <nickname>
+> <field> <value>
+DONE
+
+# Modify members
+ALTER <nickname>
+> <field> <value>
+DONE
+
+# Get data of members
+SHOW <field> OF <nickname>
+
+# Remove members
+LEAVE <nickname>
+
+# Assign location
+SIT <member> <coords>
+
+# Show group distribution
+MAP
+
+---
+
+Limitations: 
+ * One instruction per line
+ * Nicknames can only be alphanumeric
+ * data and fields can't contain spaces
+ * Seat must contain two numbers (BA25, B10, A02)
+
+Member fields: Name, email, city, transport
+
+---
+
+# Example program and output (lines starting with |) 
+# (List all members, add new member, assign seat and generate map)
+
+LIST
+| --group members
+| member1
+| member2
+| member3
+| member4
+| member5
+| --end
+JOIN <nickname>
+> NAME <name>
+> EMAIL <email>
+> CITY <city>
+> TRANSPORT <transport>
+> DONE
+| --<nickname> added to group
+| <name> (<email>)
+| <city> <transport>
+| --end
+SIT <nickname> <seat>
+| --<nickname> was assigned a seat
+| <seat>
+| --end
+MAP
+| --exporting map...
+| done
+| --end

@@ -1,0 +1,249 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> stat
+Rule 1     stat -> map
+Rule 2     stat -> list
+Rule 3     stat -> wargs
+Rule 4     stat -> data
+Rule 5     stat -> spec
+Rule 6     list -> LIST
+Rule 7     map -> MAP
+Rule 8     wargs -> LEAVE WORD
+Rule 9     spec -> SIT WORD WORD
+Rule 10    spec -> SHOW WORD IS WORD
+Rule 11    spec -> SHOW WORD OF WORD
+Rule 12    data -> DATA WORD
+Rule 13    data -> DONE
+Rule 14    data -> FIELD WORD
+
+Terminals, with rules where they appear
+
+DATA                 : 12
+DONE                 : 13
+FIELD                : 14
+IS                   : 10
+LEAVE                : 8
+LIST                 : 6
+MAP                  : 7
+OF                   : 11
+SHOW                 : 10 11
+SIT                  : 9
+WORD                 : 8 9 9 10 10 11 11 12 14
+error                : 
+
+Nonterminals, with rules where they appear
+
+data                 : 4
+list                 : 2
+map                  : 1
+spec                 : 5
+stat                 : 0
+wargs                : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . stat
+    (1) stat -> . map
+    (2) stat -> . list
+    (3) stat -> . wargs
+    (4) stat -> . data
+    (5) stat -> . spec
+    (7) map -> . MAP
+    (6) list -> . LIST
+    (8) wargs -> . LEAVE WORD
+    (12) data -> . DATA WORD
+    (13) data -> . DONE
+    (14) data -> . FIELD WORD
+    (9) spec -> . SIT WORD WORD
+    (10) spec -> . SHOW WORD IS WORD
+    (11) spec -> . SHOW WORD OF WORD
+
+    MAP             shift and go to state 10
+    LIST            shift and go to state 4
+    LEAVE           shift and go to state 7
+    DATA            shift and go to state 12
+    DONE            shift and go to state 9
+    FIELD           shift and go to state 8
+    SIT             shift and go to state 5
+    SHOW            shift and go to state 11
+
+    map                            shift and go to state 1
+    stat                           shift and go to state 2
+    wargs                          shift and go to state 3
+    list                           shift and go to state 6
+    data                           shift and go to state 13
+    spec                           shift and go to state 14
+
+state 1
+
+    (1) stat -> map .
+
+    $end            reduce using rule 1 (stat -> map .)
+
+
+state 2
+
+    (0) S' -> stat .
+
+
+
+state 3
+
+    (3) stat -> wargs .
+
+    $end            reduce using rule 3 (stat -> wargs .)
+
+
+state 4
+
+    (6) list -> LIST .
+
+    $end            reduce using rule 6 (list -> LIST .)
+
+
+state 5
+
+    (9) spec -> SIT . WORD WORD
+
+    WORD            shift and go to state 15
+
+
+state 6
+
+    (2) stat -> list .
+
+    $end            reduce using rule 2 (stat -> list .)
+
+
+state 7
+
+    (8) wargs -> LEAVE . WORD
+
+    WORD            shift and go to state 16
+
+
+state 8
+
+    (14) data -> FIELD . WORD
+
+    WORD            shift and go to state 17
+
+
+state 9
+
+    (13) data -> DONE .
+
+    $end            reduce using rule 13 (data -> DONE .)
+
+
+state 10
+
+    (7) map -> MAP .
+
+    $end            reduce using rule 7 (map -> MAP .)
+
+
+state 11
+
+    (10) spec -> SHOW . WORD IS WORD
+    (11) spec -> SHOW . WORD OF WORD
+
+    WORD            shift and go to state 18
+
+
+state 12
+
+    (12) data -> DATA . WORD
+
+    WORD            shift and go to state 19
+
+
+state 13
+
+    (4) stat -> data .
+
+    $end            reduce using rule 4 (stat -> data .)
+
+
+state 14
+
+    (5) stat -> spec .
+
+    $end            reduce using rule 5 (stat -> spec .)
+
+
+state 15
+
+    (9) spec -> SIT WORD . WORD
+
+    WORD            shift and go to state 20
+
+
+state 16
+
+    (8) wargs -> LEAVE WORD .
+
+    $end            reduce using rule 8 (wargs -> LEAVE WORD .)
+
+
+state 17
+
+    (14) data -> FIELD WORD .
+
+    $end            reduce using rule 14 (data -> FIELD WORD .)
+
+
+state 18
+
+    (10) spec -> SHOW WORD . IS WORD
+    (11) spec -> SHOW WORD . OF WORD
+
+    IS              shift and go to state 22
+    OF              shift and go to state 21
+
+
+state 19
+
+    (12) data -> DATA WORD .
+
+    $end            reduce using rule 12 (data -> DATA WORD .)
+
+
+state 20
+
+    (9) spec -> SIT WORD WORD .
+
+    $end            reduce using rule 9 (spec -> SIT WORD WORD .)
+
+
+state 21
+
+    (11) spec -> SHOW WORD OF . WORD
+
+    WORD            shift and go to state 23
+
+
+state 22
+
+    (10) spec -> SHOW WORD IS . WORD
+
+    WORD            shift and go to state 24
+
+
+state 23
+
+    (11) spec -> SHOW WORD OF WORD .
+
+    $end            reduce using rule 11 (spec -> SHOW WORD OF WORD .)
+
+
+state 24
+
+    (10) spec -> SHOW WORD IS WORD .
+
+    $end            reduce using rule 10 (spec -> SHOW WORD IS WORD .)
+
