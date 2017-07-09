@@ -5,7 +5,7 @@ from ply import lex, yacc
 
 # General data
 
-groupname="PKT Team"
+groupname="PKTuzas"
 majorlimit="B"
 minorlimit="T"
 numlimit=128
@@ -102,16 +102,18 @@ def p_map(p):
 
   print "|--exporting map"
   places={i['location']:i['name'] for i in datadict}
-  output="<center><h1>Seating plan for %s</h1><br/><br/><table>"%groupname
+  output="<center><h1>Seating plan for %s</h1><br/><br/><table style='border: 1px solid black;'>"%groupname
   letterrange=[i+j for i in string.uppercase[:string.uppercase.find(majorlimit)+1] \
                    for j in string.uppercase[:string.uppercase.find(minorlimit)+1]]
-  numrange=range(1,numlimit+1)
+  letterrange=[k for k in letterrange if k in [m["location"].replace(m["location"][-2:],"") for m in datadict]]
+  numrange=list(set([int(p['location'][-2:]) for p in datadict]).union(set([0])))
   output+="<tr>%s</tr>"%("".join(["<th>%i</th>"%i for i in numrange]))
+  numrange.sort()
 
   for i in letterrange:
     output+="<tr>"
     for j in numrange:
-      output+="<th>%s</th>"%places.get(i+str(j),"-")
+      output+="<th>%s</th>"%(places.get(i+str(j),"-") if j else i)
     output+="</tr>"
 
   with open("./seatingplan", "w+") as out:
