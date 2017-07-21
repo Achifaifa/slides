@@ -116,7 +116,7 @@ def p_map(p):
       output+="<th>%s</th>"%(places.get(i+str(j),"-") if j else i)
     output+="</tr>"
 
-  with open("./seatingplan", "w+") as out:
+  with open("./seatingplan.html", "w+") as out:
     out.write(output)
 
   print "|--done"
