@@ -1,0 +1,110 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> stat
+Rule 1     stat -> list
+Rule 2     stat -> search
+Rule 3     stat -> wargs
+Rule 4     list -> LIST
+Rule 5     wargs -> SHOW ID
+Rule 6     search -> SEARCH WORD
+
+Terminals, with rules where they appear
+
+ID                   : 5
+LIST                 : 4
+SEARCH               : 6
+SHOW                 : 5
+WORD                 : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+list                 : 1
+search               : 2
+stat                 : 0
+wargs                : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . stat
+    (1) stat -> . list
+    (2) stat -> . search
+    (3) stat -> . wargs
+    (4) list -> . LIST
+    (6) search -> . SEARCH WORD
+    (5) wargs -> . SHOW ID
+
+    LIST            shift and go to state 6
+    SEARCH          shift and go to state 3
+    SHOW            shift and go to state 5
+
+    wargs                          shift and go to state 1
+    stat                           shift and go to state 2
+    list                           shift and go to state 4
+    search                         shift and go to state 7
+
+state 1
+
+    (3) stat -> wargs .
+
+    $end            reduce using rule 3 (stat -> wargs .)
+
+
+state 2
+
+    (0) S' -> stat .
+
+
+
+state 3
+
+    (6) search -> SEARCH . WORD
+
+    WORD            shift and go to state 8
+
+
+state 4
+
+    (1) stat -> list .
+
+    $end            reduce using rule 1 (stat -> list .)
+
+
+state 5
+
+    (5) wargs -> SHOW . ID
+
+    ID              shift and go to state 9
+
+
+state 6
+
+    (4) list -> LIST .
+
+    $end            reduce using rule 4 (list -> LIST .)
+
+
+state 7
+
+    (2) stat -> search .
+
+    $end            reduce using rule 2 (stat -> search .)
+
+
+state 8
+
+    (6) search -> SEARCH WORD .
+
+    $end            reduce using rule 6 (search -> SEARCH WORD .)
+
+
+state 9
+
+    (5) wargs -> SHOW ID .
+
+    $end            reduce using rule 5 (wargs -> SHOW ID .)
+
