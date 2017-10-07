@@ -12,7 +12,6 @@ def t_ID(t):
   t.type='ID'
   return t
   
-
 def t_WORD(t):
   r'[a-zA-Z][a-zA-Z_0-9]*'
   t.type = t.value if t.value in tokens else 'WORD'
@@ -30,7 +29,7 @@ def t_error(t):
 
 # Global tokens
 
-t_ANY_ignore = " \t"
+t_ignore = " \t"
 
 # Rules
 
@@ -49,7 +48,7 @@ def p_list(p):
 
 
 def p_details(p):
-  '''details: SHOW ID'''
+  '''details : SHOW ID'''
 
   global datadict
   try: 
@@ -81,7 +80,7 @@ if __name__=="__main__":
   print time.strftime('%Y-%m-%d - %H%M')
   print "-----------------------------------------"
   while 1:
-    try: s = raw_input('>')
+    s = raw_input('>')
 
     # Repeat if there was an empty string, parse if not
     if not s: continue
